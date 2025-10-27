@@ -1,14 +1,14 @@
 {
   "type": "module",
-  "name": "api",
+  "name": "pokedex-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node --env-file=.env.production src/server.js",
     "dev": "NODE_ENV=development node --watch --env-file=.env src/server.js",
-    "db:create": "node --env-file=.env src/data/sequelize/01.createTables.js.js",
-    "db:seed": "node --env-file=.env src/data/sequelize/02.seedTables.js.js",
+    "db:create": "node --env-file=.env src/data/sequelize/01.createTables.js",
+    "db:seed": "node --env-file=.env src/data/sequelize/02.seedTables.js",
     "db:reset": "npm run db:create && npm run db:seed"
   },
   "keywords": [],
