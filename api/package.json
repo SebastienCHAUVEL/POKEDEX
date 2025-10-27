@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node --env-file=.env.production src/server.js",
+    "dev": "NODE_ENV=development node --watch --env-file=.env src/server.js",
+    "db:create": "node --env-file=.env src/data/sequelize/01.createTables.js.js",
+    "db:seed": "node --env-file=.env src/data/sequelize/02.seedTables.js.js",
+    "db:reset": "npm run db:create && npm run db:seed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "joi": "^18.0.1",
+    "pg": "^8.16.3",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "eslint": "^9.38.0",
+    "globals": "^16.4.0"
+  }
+}
