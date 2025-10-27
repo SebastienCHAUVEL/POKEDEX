@@ -2,5 +2,11 @@
 #        Request         #
 ##########################
 
-### 
+### Home
 GET http://localhost:3000/
+
+### Teams
+GET http://localhost:3000/team
+
+### Modal d'une team
+GET http://localhost:3000/team/1
