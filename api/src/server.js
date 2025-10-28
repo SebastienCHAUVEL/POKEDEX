@@ -6,6 +6,7 @@ import { errorMiddleware } from "./middlewares/error.middleware.js";
 import { addResponseMethodsMiddleware } from "./middlewares/response.middleware.js";
 import { pokemonRouter } from "./routes/pokemon.routes.js";
 import { teamRouter } from "./routes/team.routes.js";
+import { typeRouter } from "./routes/type.routes.js";
 
 // Creating app from express
 const app = express();
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 app.use("/pokemons", pokemonRouter);
 app.use("/teams", teamRouter);
+app.use("/types", typeRouter);
 
 // Error middleware
 app.use(errorMiddleware);

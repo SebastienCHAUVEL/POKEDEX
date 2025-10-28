@@ -44,3 +44,11 @@ GET http://localhost:3000/pokemons
 
 ### Modal d'un pokemon (get /pokemon/:id)
 GET http://localhost:3000/pokemons/5
+
+##########################
+
+### Types(get /types)
+GET http://localhost:3000/types
+
+### Modal d'un type(get /types/:id)
+GET http://localhost:3000/types/2

@@ -2,13 +2,10 @@ import { Team } from "../models/associations.js";
 
 export async function getTeamModal(id) {
   const team = await Team.findByPk(id, {
-    attributes: ["id", "name", "description", "createdAt", "updatedAt"],
     include: {
       association: "pokemons",
-      attributes: ["id", "name"],
       include: {
         association: "types",
-        attributes: ["id", "name", "color"],
         // hide association relation(PokemonTypes)
         through: { attributes: [] },
       },

@@ -15,10 +15,8 @@ export async function getModal(req, res, next) {
 
   // Get the pokemon modal
   const pokemon = await Pokemon.findByPk(id, {
-    attributes: ["id", "name"],
     include: {
       association: "types",
-      attributes: ["id", "name", "color"],
       // hide association relation(PokemonTypes)
       through: { attributes: [] },
     },
