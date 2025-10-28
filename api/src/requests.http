@@ -5,8 +5,34 @@
 ### Home
 GET http://localhost:3000/
 
-### Teams
+### Teams(get /team)
 GET http://localhost:3000/team
 
-### Modal d'une team
-GET http://localhost:3000/team/1
+### Ajouter une team (post /team)
+POST http://localhost:3000/team
+Content-Type: application/json
+
+{
+  "name": "Nouvelle équipe",
+  "description": "La nouvelle équipe de pokémons @#!6'"
+}
+
+### Modal d'une team (get /team/:id)
+GET http://localhost:3000/team/4
+
+### Supprimer une team (delete /team/:id)
+DELETE http://localhost:3000/team/5
+
+### Modifier le nom d'une team (update /team/:id)
+PATCH http://localhost:3000/team/6
+Content-Type: application/json
+
+{
+  "name": "Team modifié"
+}
+
+### Ajouter un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
+POST http://localhost:3000/team/4/pokemon/1
+
+### Supprimer un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
+DELETE http://localhost:3000/team/4/pokemon/1
