@@ -6,10 +6,10 @@
 GET http://localhost:3000/
 
 ### Teams(get /team)
-GET http://localhost:3000/team
+GET http://localhost:3000/teams
 
 ### Ajouter une team (post /team)
-POST http://localhost:3000/team
+POST http://localhost:3000/teams
 Content-Type: application/json
 
 {
@@ -18,13 +18,13 @@ Content-Type: application/json
 }
 
 ### Modal d'une team (get /team/:id)
-GET http://localhost:3000/team/4
+GET http://localhost:3000/teams/4
 
 ### Supprimer une team (delete /team/:id)
-DELETE http://localhost:3000/team/5
+DELETE http://localhost:3000/teams/5
 
 ### Modifier le nom d'une team (update /team/:id)
-PATCH http://localhost:3000/team/6
+PATCH http://localhost:3000/teams/4
 Content-Type: application/json
 
 {
@@ -32,15 +32,15 @@ Content-Type: application/json
 }
 
 ### Ajouter un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
-POST http://localhost:3000/team/4/pokemon/1
+POST http://localhost:3000/teams/4/pokemons/1
 
 ### Supprimer un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
-DELETE http://localhost:3000/team/4/pokemon/1
+DELETE http://localhost:3000/teams/4/pokemons/1
 
 ##########################
 
 ### Pokemons(get /pokemon)
-GET http://localhost:3000/pokemon
+GET http://localhost:3000/pokemons
 
 ### Modal d'un pokemon (get /pokemon/:id)
-GET http://localhost:3000/pokemon/4
+GET http://localhost:3000/pokemons/5

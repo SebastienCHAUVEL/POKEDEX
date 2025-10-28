@@ -33,7 +33,7 @@ teamRouter
 
 // Route /team/:teamId/pokemon/:pokemonId
 teamRouter
-  .route("/:teamId/pokemon/:pokemonId")
+  .route("/:teamId/pokemons/:pokemonId")
   .all(validate("params", pokemonTeamPk))
   .post(addPokemonInTeam)
   .delete(removePokemonInTeam);

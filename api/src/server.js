@@ -19,8 +19,8 @@ app.use(addResponseMethodsMiddleware);
 app.get("/", (req, res) => {
   res.json({ message: "Hello, World!" });
 });
-app.use("/pokemon", pokemonRouter);
-app.use("/team", teamRouter);
+app.use("/pokemons", pokemonRouter);
+app.use("/teams", teamRouter);
 
 // Error middleware
 app.use(errorMiddleware);
