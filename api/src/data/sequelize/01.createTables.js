@@ -5,7 +5,7 @@ console.log("🗑️ Suppression des tables existantes...");
 await sequelize.drop();
 
 console.log("🚧 Définition des tables...");
-await sequelize.sync();
+await sequelize.sync({ force: true });
 
 console.log(
   "🗃️ Structure de la base de données : ",

@@ -36,3 +36,11 @@ POST http://localhost:3000/team/4/pokemon/1
 
 ### Supprimer un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
 DELETE http://localhost:3000/team/4/pokemon/1
+
+##########################
+
+### Pokemons(get /pokemon)
+GET http://localhost:3000/pokemon
+
+### Modal d'un pokemon (get /pokemon/:id)
+GET http://localhost:3000/pokemon/4

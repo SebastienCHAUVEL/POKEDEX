@@ -70,7 +70,6 @@ export async function addPokemonInTeam(req, res, next) {
   }
 
   // Add pokemon in team(duplicates pokemons in a team not allowed)
-  // TODO: allow duplicates
   await team.addPokemon(pokemon);
 
   // Get the new team modal
