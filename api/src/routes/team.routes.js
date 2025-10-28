@@ -13,27 +13,29 @@ import {
 import { validate } from "../middlewares/validation.middleware.js";
 import { pkSchema, pokemonTeamPk } from "../schemas/pk.schema.js";
 import { createSchema, updateNameSchema } from "../schemas/team.schema.js";
+// Authentification
+import { checkAuth } from "../middlewares/auth.middleware.js";
 
 // Creating express router
 export const teamRouter = Router();
 
-// Route /team
+// Route /teams
 teamRouter
   .route("/")
   .get(getAll)
-  .post(validate("body", createSchema), createTeam);
+  .post(checkAuth, validate("body", createSchema), createTeam);
 
-// Route /team/:id
+// Route /teams/:id
 teamRouter
   .route("/:id")
   .all(validate("params", pkSchema))
   .get(getModal)
-  .delete(removeTeam)
-  .patch(validate("body", updateNameSchema), updateName);
+  .delete(checkAuth, removeTeam)
+  .patch(checkAuth, validate("body", updateNameSchema), updateName);
 
-// Route /team/:teamId/pokemon/:pokemonId
+// Route /teams/:teamId/pokemons/:pokemonId
 teamRouter
   .route("/:teamId/pokemons/:pokemonId")
   .all(validate("params", pokemonTeamPk))
-  .post(addPokemonInTeam)
-  .delete(removePokemonInTeam);
+  .post(checkAuth, addPokemonInTeam)
+  .delete(checkAuth, removePokemonInTeam);

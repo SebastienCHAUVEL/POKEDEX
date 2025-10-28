@@ -8,8 +8,8 @@ import { pkSchema } from "../schemas/pk.schema.js";
 // Creating express router
 export const pokemonRouter = Router();
 
-// Route /pokemon
+// Route /pokemons
 pokemonRouter.get("/", getAll);
 
-// Route /pokemon/:id
+// Route /pokemons/:id
 pokemonRouter.get("/:id", validate("params", pkSchema), getModal);

@@ -1,16 +1,42 @@
 ##########################
-#        Request         #
+#        Login           #
 ##########################
 
-### Home
+### S'inscrire
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "user3",
+  "password": "je suis le roi du mondE1!#é",
+  "validation": "je suis le roi du mondE1!#é"
+}
+
+### Se connecter
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "user3",
+  "password": "je suis le roi du mondE1!#é"
+}
+
+##########################
+#        Home            #
+##########################
 GET http://localhost:3000/
 
-### Teams(get /team)
+##########################
+#        Teams           #
+##########################
+
+### Liste des teams (get /team)
 GET http://localhost:3000/teams
 
 ### Ajouter une team (post /team)
 POST http://localhost:3000/teams
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
 
 {
   "name": "Nouvelle équipe",
@@ -18,36 +44,48 @@ Content-Type: application/json
 }
 
 ### Modal d'une team (get /team/:id)
-GET http://localhost:3000/teams/4
+GET http://localhost:3000/teams/6
 
 ### Supprimer une team (delete /team/:id)
-DELETE http://localhost:3000/teams/5
+DELETE http://localhost:3000/teams/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
+
 
 ### Modifier le nom d'une team (update /team/:id)
-PATCH http://localhost:3000/teams/4
+PATCH http://localhost:3000/teams/6
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
+
 
 {
   "name": "Team modifié"
 }
 
 ### Ajouter un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
-POST http://localhost:3000/teams/4/pokemons/1
+POST http://localhost:3000/teams/6/pokemons/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
+
 
 ### Supprimer un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
-DELETE http://localhost:3000/teams/4/pokemons/1
+DELETE http://localhost:3000/teams/6/pokemons/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
+
 
 ##########################
+#        Pokemons        #
+##########################
 
-### Pokemons(get /pokemon)
+### Lister les pokemons (get /pokemon)
 GET http://localhost:3000/pokemons
 
 ### Modal d'un pokemon (get /pokemon/:id)
 GET http://localhost:3000/pokemons/5
 
 ##########################
+#        Types           #
+##########################
 
-### Types(get /types)
+### Lister les types (get /types)
 GET http://localhost:3000/types
 
 ### Modal d'un type(get /types/:id)

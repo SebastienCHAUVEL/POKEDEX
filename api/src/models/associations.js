@@ -1,6 +1,7 @@
 import { Pokemon } from "./pokemon.model.js";
 import { Team } from "./team.model.js";
 import { Type } from "./type.model.js";
+import { User } from "./user.model.js";
 
 // Association between Team and Pokemon (Many-to-Many)
 Team.belongsToMany(Pokemon, {
@@ -30,4 +31,4 @@ Type.belongsToMany(Pokemon, {
   through: "PokemonTypes",
 });
 
-export { Pokemon, Team, Type };
+export { Pokemon, Team, Type, User };

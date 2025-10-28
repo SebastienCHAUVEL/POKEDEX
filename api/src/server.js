@@ -7,19 +7,21 @@ import { addResponseMethodsMiddleware } from "./middlewares/response.middleware.
 import { pokemonRouter } from "./routes/pokemon.routes.js";
 import { teamRouter } from "./routes/team.routes.js";
 import { typeRouter } from "./routes/type.routes.js";
+import { authRouter } from "./routes/auth.routes.js";
 
 // Creating app from express
 const app = express();
 
 // Middlewares
-app.use(cors());
-app.use(express.json());
-app.use(addResponseMethodsMiddleware);
+app.use(cors()); // Allow Cross-Origin Resource Sharing
+app.use(express.json()); // parses incoming requests with JSON payloads
+app.use(addResponseMethodsMiddleware); // Add methods in res Object for standars responses
 
 // Routes
 app.get("/", (req, res) => {
   res.json({ message: "Hello, World!" });
 });
+app.use("/auth", authRouter);
 app.use("/pokemons", pokemonRouter);
 app.use("/teams", teamRouter);
 app.use("/types", typeRouter);
