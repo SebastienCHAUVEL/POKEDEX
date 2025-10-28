@@ -26,13 +26,14 @@ export async function getModal(req, res, next) {
     },
   });
 
+  if (!team) {
+    return next(new HttpError("team not found", StatusCodes.NOT_FOUND));
+  }
+
   // Trick to convert team into a classic JS object to add number of pokemon
   const teamObject = JSON.parse(JSON.stringify(team));
 
   teamObject.pokemonCount = team.pokemons.length;
 
-  if (!team) {
-    return next(new HttpError("team not found", StatusCodes.NOT_FOUND));
-  }
   return res.success(teamObject);
 }
