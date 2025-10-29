@@ -13,7 +13,7 @@ import {
 import { validate } from "../middlewares/validation.middleware.js";
 import { pkSchema, pokemonTeamPk } from "../schemas/pk.schema.js";
 import { createSchema, updateNameSchema } from "../schemas/team.schema.js";
-// Authentification
+// Authentication
 import { checkAuth } from "../middlewares/auth.middleware.js";
 
 // Creating express router
@@ -37,5 +37,5 @@ teamRouter
 teamRouter
   .route("/:teamId/pokemons/:pokemonId")
   .all(validate("params", pokemonTeamPk))
-  .post(checkAuth, addPokemonInTeam)
+  .put(checkAuth, addPokemonInTeam)
   .delete(checkAuth, removePokemonInTeam);

@@ -38,6 +38,6 @@ Pokemon.init(
   },
   {
     sequelize,
-    tableName: "pokemons",
+    tableName: "pokemon",
   }
 );

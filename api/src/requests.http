@@ -7,7 +7,7 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "username": "user3",
+  "username": "user2",
   "password": "je suis le roi du mondE1!#é",
   "validation": "je suis le roi du mondE1!#é"
 }
@@ -17,7 +17,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "username": "user3",
+  "username": "user2",
   "password": "je suis le roi du mondE1!#é"
 }
 
@@ -30,10 +30,10 @@ GET http://localhost:3000/
 #        Teams           #
 ##########################
 
-### Liste des teams (get /team)
+### Liste des teams (get /teams)
 GET http://localhost:3000/teams
 
-### Ajouter une team (post /team)
+### Ajouter une team (post /teams)
 POST http://localhost:3000/teams
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
@@ -43,15 +43,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
   "description": "La nouvelle équipe de pokémons @#!6'"
 }
 
-### Modal d'une team (get /team/:id)
+### Modal d'une team (get /teams/:id)
 GET http://localhost:3000/teams/6
 
-### Supprimer une team (delete /team/:id)
+### Supprimer une team (delete /teams/:id)
 DELETE http://localhost:3000/teams/4
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
 
 
-### Modifier le nom d'une team (update /team/:id)
+### Modifier le nom d'une team (update /teams/:id)
 PATCH http://localhost:3000/teams/6
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
@@ -61,12 +61,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
   "name": "Team modifié"
 }
 
-### Ajouter un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
+### Ajouter un pokemon à une team (post /teams/:teamId/pokemon/pokemon/:id)
 POST http://localhost:3000/teams/6/pokemons/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
 
 
-### Supprimer un pokemon à une team (post /team/:teamId/pokemon/pokemon/:id)
+### Supprimer un pokemon à une team (post /teams/:teamId/pokemon/pokemon/:id)
 DELETE http://localhost:3000/teams/6/pokemons/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE2Njg4NDEsImV4cCI6MTc2MTY4MzI0MX0.tpLxkq53D-fjlYVJqkuAIOwAsyNrBdMhWervu3AwOLQ
 
@@ -75,14 +75,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
 #        Pokemons        #
 ##########################
 
-### Lister les pokemons (get /pokemon)
+### Lister les pokemons (get /pokemons)
 GET http://localhost:3000/pokemons
 
-### Modal d'un pokemon (get /pokemon/:id ou pokemon/:name)
+### Modal d'un pokemon (get /pokemons/:id ou pokemon/:name)
 GET http://localhost:3000/pokemons/drac
 
-### Comparer deux pokemons (get /pokemon/:id/:idToCompare)
-GET http://localhost:3000/pokemons/1/2
+### Comparer deux pokemons (get /pokemons/:id/:idToCompare)
+GET http://localhost:3000/pokemons/1/1
+
+#########Votes############
+
+### Voter pour une pokemon (put /pokemons/:id/votes)
+PUT http://localhost:3000/pokemons/1/votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE3NjE3MjU4MTksImV4cCI6MTc2MTc0MDIxOX0.PGg3zwJ3fOvlPJgaAQjSzlRi7nh2mFo1ndJbByZTFxw
+
+### Afficher le nombre de votes pour un pokemons (get /pokemon/:id/votes)
+GET http://localhost:3000/pokemons/1/votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE3NjE3MjU4MTksImV4cCI6MTc2MTc0MDIxOX0.PGg3zwJ3fOvlPJgaAQjSzlRi7nh2mFo1ndJbByZTFxw
+
+### Afficher le podium (get /pokemons/votes)
+GET http://localhost:3000/pokemons/votes
 
 ##########################
 #        Types           #

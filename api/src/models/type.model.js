@@ -16,6 +16,6 @@ Type.init(
   },
   {
     sequelize,
-    tableName: "types",
+    tableName: "type",
   }
 );

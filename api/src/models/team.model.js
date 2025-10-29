@@ -16,6 +16,6 @@ Team.init(
   },
   {
     sequelize,
-    tableName: "teams",
+    tableName: "team",
   }
 );

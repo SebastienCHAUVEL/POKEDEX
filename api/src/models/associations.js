@@ -31,4 +31,18 @@ Type.belongsToMany(Pokemon, {
   through: "PokemonTypes",
 });
 
+// Association between User and Pokemon ==> vote (Many-to-many)
+User.belongsToMany(Pokemon, {
+  as: "votes",
+  foreignKey: "userId",
+  otherKey: "pokemonId",
+  through: "VotePokemons",
+});
+Pokemon.belongsToMany(User, {
+  as: "votes",
+  foreignKey: "pokemonId",
+  otherKey: "userId",
+  through: "VotePokemons",
+});
+
 export { Pokemon, Team, Type, User };
