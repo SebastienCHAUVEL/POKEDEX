@@ -5,16 +5,20 @@ import { HttpError } from "../utils/httpError.util.js";
 import { Type } from "../models/associations.js";
 
 export async function getAll(req, res) {
-  const pokemons = await Type.findAll();
+  const pokemons = await Type.findAll({
+    attributes: ["id", "name", "color"],
+  });
 
   return res.success(pokemons);
 }
 
 export async function getPokemonsByType(req, res, next) {
-  const { id } = req.params;
-  const type = await Type.findByPk(id, {
+  const { typeId } = req.params;
+  const type = await Type.findByPk(typeId, {
+    attributes: ["id", "name", "color"],
     include: {
       association: "pokemons",
+      attributes: ["id", "name"],
       // hide association relation(PokemonTypes)
       through: { attributes: [] },
     },

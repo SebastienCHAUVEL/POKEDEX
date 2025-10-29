@@ -8,8 +8,8 @@ import { pkSchema } from "../schemas/pk.schema.js";
 // Creating express router
 export const typeRouter = Router();
 
-// Route /types
+// Route /types => List of types
 typeRouter.get("/", getAll);
 
-// Route /types/:id
-typeRouter.get("/:id", validate("params", pkSchema), getPokemonsByType);
+// Route /types/:id => Modal of a type with list of pokemons
+typeRouter.get("/:typeId", validate("params", pkSchema), getPokemonsByType);

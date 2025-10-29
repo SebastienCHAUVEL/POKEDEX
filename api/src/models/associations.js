@@ -45,4 +45,16 @@ Pokemon.belongsToMany(User, {
   through: "VotePokemons",
 });
 
+// Association between Team and User (1-to -Many)
+User.hasMany(Team, {
+  as: "teams",
+  foreignKey: "userId",
+  onDelete: "CASCADE",
+});
+
+Team.belongsTo(User, {
+  as: "user",
+  foreignKey: "userId",
+});
+
 export { Pokemon, Team, Type, User };

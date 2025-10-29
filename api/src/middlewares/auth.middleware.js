@@ -1,6 +1,8 @@
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 import { HttpError } from "../utils/httpError.util.js";
+import { User } from "../models/user.model.js";
+import { Team } from "../models/team.model.js";
 
 export function checkAuth(req, res, next) {
   const authHeader = req.headers.authorization;
@@ -18,6 +20,23 @@ export function checkAuth(req, res, next) {
 
   // saving current user in req
   req.userId = tokenInfo.user_id;
+
+  next();
+}
+
+export async function checkUserTeam(req, res, next) {
+  const currentUser = await User.findByPk(req.userId);
+  const team = await Team.findByPk(req.params.teamId);
+
+  // Check if user own this team
+  if (!(await currentUser.hasTeam(team))) {
+    return next(
+      new HttpError(
+        `${currentUser.username} does not own ${team.name}`,
+        StatusCodes.UNAUTHORIZED
+      )
+    );
+  }
 
   next();
 }

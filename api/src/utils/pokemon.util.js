@@ -1,8 +1,8 @@
 import { Pokemon } from "../models/pokemon.model.js";
 
-export async function getPokemonVote(pokemonId) {
+export async function getVotesPerPokemon(pokemonId) {
   const pokemon = await Pokemon.findByPk(pokemonId, {
-    attributes: ["id", "name", "createdAt", "updatedAt"],
+    attributes: ["id", "name"],
     include: {
       association: "votes",
       attributes: ["id", "username"],

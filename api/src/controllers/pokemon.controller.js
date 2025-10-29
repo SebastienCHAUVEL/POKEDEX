@@ -2,12 +2,16 @@ import { StatusCodes } from "http-status-codes";
 import { Op, Sequelize } from "sequelize";
 // Utils
 import { HttpError } from "../utils/httpError.util.js";
-import { getPokemonVote } from "../utils/pokemon.util.js";
+import { getVotesPerPokemon } from "../utils/pokemon.util.js";
 // Models
 import { Pokemon, User } from "../models/associations.js";
 
 export async function getAll(req, res) {
-  const pokemons = await Pokemon.findAll();
+  const pokemons = await Pokemon.findAll({
+    attributes: {
+      exclude: ["createdAt", "updatedAt"],
+    },
+  });
 
   return res.success(pokemons);
 }
@@ -31,8 +35,14 @@ export async function getModal(req, res, next) {
   // Get the pokemon modal
   const pokemon = await Pokemon.findOne({
     where,
+    attributes: {
+      exclude: ["createdAt", "updatedAt"],
+    },
     include: {
       association: "types",
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
       // hide association relation(PokemonTypes)
       through: { attributes: [] },
     },
@@ -46,9 +56,9 @@ export async function getModal(req, res, next) {
 }
 
 export async function getComparedPokemon(req, res, next) {
-  const { id, idToCompare } = req.params;
+  const { pokemonId, idToCompare } = req.params;
 
-  if (id === idToCompare) {
+  if (pokemonId === idToCompare) {
     return next(
       new HttpError("Cannot compare the same pokemon", StatusCodes.BAD_REQUEST)
     );
@@ -57,10 +67,16 @@ export async function getComparedPokemon(req, res, next) {
   // Get both of the pokemons
   const pokemons = await Pokemon.findAll({
     where: {
-      [Op.or]: [{ id }, { id: idToCompare }],
+      [Op.or]: [{ id: pokemonId }, { id: idToCompare }],
+    },
+    attributes: {
+      exclude: ["createdAt", "updatedAt"],
     },
     include: {
       association: "types",
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
       // hide association relation(PokemonTypes)
       through: { attributes: [] },
     },
@@ -75,9 +91,9 @@ export async function getComparedPokemon(req, res, next) {
 }
 
 export async function addVote(req, res, next) {
-  const { id } = req.params;
+  const { pokemonId } = req.params;
 
-  const pokemon = await Pokemon.findByPk(id);
+  const pokemon = await Pokemon.findByPk(pokemonId);
   const currentUser = await User.findByPk(req.userId);
 
   if (!pokemon) {
@@ -88,15 +104,30 @@ export async function addVote(req, res, next) {
   await pokemon.addVote(currentUser);
 
   // Get the pokemon updated with total votes
-  const newPokemon = await getPokemonVote(id);
+  const newPokemon = await getVotesPerPokemon(pokemonId);
 
   return res.success(newPokemon);
 }
 
-export async function getVotes(req, res, next) {
-  const { id } = req.params;
+export async function removeVote(req, res, next) {
+  const { pokemonId } = req.params;
 
-  const pokemon = await await getPokemonVote(id);
+  const pokemon = await Pokemon.findByPk(pokemonId);
+  const currentUser = await User.findByPk(req.userId);
+
+  if (!pokemon) {
+    return next(new HttpError("pokemon not found", StatusCodes.NOT_FOUND));
+  }
+
+  // Add the user vote for a pokemon(duplicate vote is not allowed)
+  await pokemon.removeVote(currentUser);
+
+  return res.deleted();
+}
+export async function getVotes(req, res, next) {
+  const { pokemonId } = req.params;
+
+  const pokemon = await await getVotesPerPokemon(pokemonId);
 
   if (!pokemon) {
     return next(new HttpError("pokemon not found", StatusCodes.NOT_FOUND));
@@ -105,7 +136,7 @@ export async function getVotes(req, res, next) {
   return res.success(pokemon);
 }
 
-export async function getPodium(req, res, next) {
+export async function getPodium(req, res) {
   const topPokemons = await Pokemon.findAll({
     attributes: {
       include: [

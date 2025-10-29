@@ -11,10 +11,10 @@ export async function getAll(req, res) {
 }
 
 export async function getModal(req, res, next) {
-  const { id } = req.params;
+  const { teamId } = req.params;
 
   // Get the team modal
-  const team = await getTeamModal(id);
+  const team = await getTeamModal(teamId);
 
   if (!team) {
     return next(new HttpError("team not found", StatusCodes.NOT_FOUND));
@@ -24,9 +24,9 @@ export async function getModal(req, res, next) {
 }
 
 export async function removeTeam(req, res, next) {
-  const { id } = req.params;
+  const { teamId } = req.params;
 
-  const deletedCount = await Team.destroy({ where: { id } });
+  const deletedCount = await Team.destroy({ where: { id: teamId } });
   if (deletedCount === 0) {
     return next(new HttpError("team not found", StatusCodes.NOT_FOUND));
   }
@@ -35,15 +35,16 @@ export async function removeTeam(req, res, next) {
 }
 
 export async function createTeam(req, res) {
-  const newTeam = await Team.create(req.body);
+  const { name, description } = req.body;
+  const newTeam = await Team.create({ name, description, userId: req.userId });
 
   res.created(newTeam);
 }
 
 export async function updateName(req, res, next) {
-  const { id } = req.params;
+  const { teamId } = req.params;
 
-  const team = await Team.findByPk(id);
+  const team = await Team.findByPk(teamId);
 
   if (!team) {
     return next(new HttpError("team not found", StatusCodes.NOT_FOUND));
@@ -60,13 +61,21 @@ export async function addPokemonInTeam(req, res, next) {
   const pokemon = await Pokemon.findByPk(pokemonId);
 
   if (!team || !pokemon) {
-    next(
+    return next(
       new HttpError(
         `${team ? "Pokemon" : "Team"} Not found`,
         StatusCodes.NOT_FOUND
       )
     );
-    return;
+  }
+
+  if ((await team.countPokemons()) >= 6) {
+    return next(
+      new HttpError(
+        `${team.name} cannot exceed 6 pokemons`,
+        StatusCodes.BAD_REQUEST
+      )
+    );
   }
 
   // Add pokemon in team(duplicates pokemons in a team not allowed by default)
@@ -107,8 +116,5 @@ export async function removePokemonInTeam(req, res, next) {
 
   await team.removePokemon(pokemon);
 
-  // Get the new team modal
-  const newTeam = await getTeamModal(teamId);
-
-  return res.success(newTeam);
+  return res.deleted();
 }

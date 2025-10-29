@@ -4,8 +4,12 @@ export async function getTeamModal(id) {
   const team = await Team.findByPk(id, {
     include: {
       association: "pokemons",
+      attributes: ["id", "name"],
       include: {
         association: "types",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
         // hide association relation(PokemonTypes)
         through: { attributes: [] },
       },

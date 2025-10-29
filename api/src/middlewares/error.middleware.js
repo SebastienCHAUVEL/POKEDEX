@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 
 export const errorMiddleware = (err, req, res, next) => {
-  console.error(err);
+  console.error(JSON.stringify(err));
 
   // Sequelize unique contrain error(if multiple fields are involved)
   if (err.name === "SequelizeUniqueConstraintError") {
@@ -32,6 +32,15 @@ export const errorMiddleware = (err, req, res, next) => {
   // errors thrown from controller(ex: 404)
   if (err.name === "HttpError") {
     return res.status(err.status).json({ errors: [err.message] });
+  }
+
+  // JWT errors
+  if (
+    err.name === "TokenExpiredError" ||
+    err.name === "JsonWebTokenError" ||
+    err.name === "NotBeforeError"
+  ) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({ errors: [err.message] });
   }
 
   // Other errors(=> 500)

@@ -1,5 +1,17 @@
-import { Pokemon, Type, Team } from "../../models/associations.js";
+import { Pokemon, Type, Team, User } from "../../models/associations.js";
 import { sequelize } from "../sequelize/sequelize.client.js";
+import argon2 from "argon2";
+
+// Users
+console.log("🚧 Ajout des utilisateurs...");
+const userA = await User.create({
+  username: "user",
+  password: await argon2.hash("User1234"),
+});
+const userB = await User.create({
+  username: "user2",
+  password: await argon2.hash("User1234"),
+});
 
 // Pokemons
 console.log("🚧 Ajout des pokemons...");
@@ -118,14 +130,17 @@ console.log("🚧 Ajout des équipes...");
 const ultimateTeam = await Team.create({
   name: "Ultimate Team",
   description: "La meilleure team du monde",
+  userId: userA.id,
 });
 const fofolleTeam = await Team.create({
   name: "Squad fofolle",
   description: "Pour tout gagne",
+  userId: userA.id,
 });
 const enferTeam = await Team.create({
   name: "La Team de l'enfer",
   description: "Le feuuuuu",
+  userId: userB.id,
 });
 
 // Team <-> Pokemon
