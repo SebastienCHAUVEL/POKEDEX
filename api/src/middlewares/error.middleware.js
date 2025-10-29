@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 
 export const errorMiddleware = (err, req, res, next) => {
-  console.error(JSON.stringify(err));
+  console.error(err);
 
   // Sequelize unique contrain error(if multiple fields are involved)
   if (err.name === "SequelizeUniqueConstraintError") {

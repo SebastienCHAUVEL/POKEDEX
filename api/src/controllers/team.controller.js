@@ -43,15 +43,18 @@ export async function createTeam(req, res) {
 
 export async function updateName(req, res, next) {
   const { teamId } = req.params;
+  const [updatedCount, updatedTeam] = await Team.update(req.body, {
+    where: { id: teamId },
+    returning: true, // allow Team.update to return updatedTeam
+  });
 
-  const team = await Team.findByPk(teamId);
-
-  if (!team) {
+  if (updatedCount === 0) {
     return next(new HttpError("team not found", StatusCodes.NOT_FOUND));
   }
-  const updatedTeam = await team.update(req.body);
 
-  res.success(updatedTeam);
+  const updatedItem = updatedTeam[0];
+
+  res.success(updatedItem);
 }
 
 export async function addPokemonInTeam(req, res, next) {

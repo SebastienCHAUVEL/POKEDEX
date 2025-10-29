@@ -51,7 +51,7 @@ DELETE http://localhost:3000/teams/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
 
 ### Modifier le nom d'une team (update /teams/:id)
-PATCH http://localhost:3000/teams/1
+PATCH http://localhost:3000/teams/8
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
 
