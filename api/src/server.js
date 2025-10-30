@@ -2,7 +2,7 @@
 import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
+import { specs } from "./utils/swagger.utils.js";
 // Local modules
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import { addResponseMethodsMiddleware } from "./middlewares/response.middleware.js";
@@ -18,27 +18,6 @@ const app = express();
 app.use(cors()); // Allow Cross-Origin Resource Sharing
 app.use(express.json()); // parses incoming requests with JSON payloads
 app.use(addResponseMethodsMiddleware); // Add methods in res Object for standars responses
-
-// Swagger config
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Pokedex API",
-      version: "1.0.0",
-      description: "Pokemon teams manager API",
-    },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-        description: "Development server ",
-      },
-    ],
-  },
-  apis: ["./src/routes/*.js"],
-};
-
-const specs = swaggerJSDoc(options);
 
 // Routes
 app.get("/", (req, res) => {
