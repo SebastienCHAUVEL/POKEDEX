@@ -33,7 +33,7 @@ export async function checkUserTeam(req, res, next) {
     return next(
       new HttpError(
         `${currentUser.username} does not own ${team.name}`,
-        StatusCodes.UNAUTHORIZED
+        StatusCodes.FORBIDDEN
       )
     );
   }

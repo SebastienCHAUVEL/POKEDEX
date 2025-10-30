@@ -7,7 +7,7 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "username": "user42",
+  "username": "user45",
   "password": "je suis le roi du mondE1!#é",
   "validation": "je suis le roi du mondE1!#é"
 }
@@ -36,10 +36,10 @@ GET http://localhost:3000/teams
 ### Ajouter une team (post /teams)
 POST http://localhost:3000/teams
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 
 {
-  "name": "Nouvelle équipe",
+  "name": "comme tu veux",
   "description": "La nouvelle équipe de pokémons @#!6'"
 }
 
@@ -47,14 +47,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
 GET http://localhost:3000/teams/5
 
 ### Supprimer une team (delete /teams/:id)
-DELETE http://localhost:3000/teams/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
-
+DELETE http://localhost:3000/teams/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 ### Modifier le nom d'une team (update /teams/:id)
 PATCH http://localhost:3000/teams/8
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 
 {
   "name": "Team modifié"
@@ -62,13 +60,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
 
 ### Ajouter un pokemon à une team (post /teams/:teamId/pokemon/pokemon/:id)
 PUT http://localhost:3000/teams/7/pokemons/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 
 ### Supprimer un pokemon à une team (post /teams/:teamId/pokemon/pokemon/:id)
 DELETE http://localhost:3000/teams/7/pokemons/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 
 ##########################
 #        Pokemons        #
@@ -77,8 +73,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
 ### Lister les pokemons (get /pokemons)
 GET http://localhost:3000/pokemons
 
-### Modal d'un pokemon (get /pokemons/:id ou pokemon/:name)
-GET http://localhost:3000/pokemons/drac
+### Modal d'un pokemon (get /pokemons/:id ou pokemons/names/:name)
+GET http://localhost:3000/pokemons/1
+###
+GET http://localhost:3000/pokemons/names/dra
 
 ### Comparer deux pokemons (get /pokemons/:id/:idToCompare)
 GET http://localhost:3000/pokemons/compare/1/2
@@ -86,13 +84,11 @@ GET http://localhost:3000/pokemons/compare/1/2
 #########Votes############
 
 ### Voter pour une pokemon (put /pokemons/:id/votes)
-PUT http://localhost:3000/pokemons/2/votes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
-
+PUT http://localhost:3000/pokemons/1/votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 ### Unvoter pour une pokemon (put /pokemons/:id/votes)
 DELETE  http://localhost:3000/pokemons/3/votes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE3NDcwMTgsImV4cCI6MTc2MTc2MTQxOH0.b7CnLerXCkopnw90KPMaiZPbq3mH_kel-5P7VvYFUVQ 
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
 ### Afficher le nombre de votes pour un pokemons (get /pokemon/:id/votes)
 GET http://localhost:3000/pokemons/2/votes
 

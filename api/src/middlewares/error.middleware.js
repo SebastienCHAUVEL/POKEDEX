@@ -8,18 +8,15 @@ export const errorMiddleware = (err, req, res, next) => {
     // Get the field names that caused the unique constraint error
     const fieldNames = Object.keys(err.fields);
     // Copying the original error messages
-    let errors = err.errors;
+    let message = `${err.parent.constraint.split("_")[1]} must be unique`;
     // If multiple fields are involved, create a combined error message
     if (fieldNames.length > 1) {
-      const errorMessage = `The combination of the following fields must be unique: ${fieldNames.join(
+      message = `The combination of the following fields must be unique: ${fieldNames.join(
         ", "
       )}`;
-      errors = [{ message: errorMessage }];
     }
 
-    return res
-      .status(StatusCodes.CONFLICT)
-      .json({ errors: errors.map((e) => e.message) });
+    return res.status(StatusCodes.CONFLICT).json({ errors: [message] });
   }
 
   // Schema errors

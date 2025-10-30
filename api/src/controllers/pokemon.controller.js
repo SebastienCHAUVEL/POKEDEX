@@ -17,20 +17,16 @@ export async function getAll(req, res) {
 }
 
 export async function getModal(req, res, next) {
-  const { pokemonToFind } = req.params;
-
-  // Try to get id
-  const id = parseInt(pokemonToFind);
+  const { pokemonId, pokemonName } = req.params;
 
   // Change the where clause depend on params(id or name)
-  let where = {};
-  if (Number.isNaN(id)) {
-    where.name = {
-      [Op.iLike]: `%${pokemonToFind}%`, // Make case insensitive + flexible search
-    };
-  } else {
-    where.id = id;
-  }
+  const where = pokemonName
+    ? {
+        name: {
+          [Op.iLike]: `%${pokemonName}%`, // Make case insensitive + flexible search
+        },
+      }
+    : { id: pokemonId };
 
   // Get the pokemon modal
   const pokemon = await Pokemon.findOne({
