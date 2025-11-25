@@ -1,17 +1,27 @@
 # Pokedex
 
-API de gestion de pokémons.
+API de gestion de pokémons réalisée entierrement  de la conception jusqu'à la mise en production à partir d'une [roadmap](./docs/roadmap.md)
 
-## Documentation
+## 📝 Documentation
 
-Une fois le serveur démarré, rendez-vous sur [la route menant à la documentation de l'API](http://localhost:3000/api/docs)
+Pour avoir une description des routes de l'API, rendez-vous sur [la documentation de l'API](https://pokedex-production-399e.up.railway.app/api/docs/) (mise en place par mes soins avec swagger)
 
-## Conception
+## ✍️ Conception
 
 - [MCD](./docs/MCD.drawio.png)
 - [MPD](./docs/MPD.drawio.png)
 
-## Installation
+## 🛠️ Technos utilisés
+
+- Mise en place de l'API en **node.js** avec le framework **Express**
+- Base de donnée **PostgreSql**
+- Validation des données des requêtes avec **Joi**
+- Hashage des mots de passes avec **argon2**
+- Mise en place de token JWT avec **jsonwebtoken** pour la connexion à l'api
+- Utilisation de l'ORM **sequelize** pour communiquer avec la base donnée
+- Mise en place d'une documentation de l'API avec **swagger**
+
+## 🚀 Installation locale avec Docker
 
 ```bash
 # Cloner le projet
@@ -23,53 +33,14 @@ cd REPO_NAME
 # Ouvrir le projet dans VSCode
 code .
 
-cd api
+# Build les services (api et bdd)
+docker compose build
 
-# Installer les dépendances nécessaire au back
-npm install 
+# Lancement des conteneurs
+docker compose up
 ```
 
-### Mise en place de la base de données
-
-```bash
-# Se connecter à son client Postgres
-sudo -i -u postgres psql
-
-# Créer un utilisateur de base de données
-CREATE USER admin_pokedex WITH LOGIN PASSWORD 'pokedex';
-
-# Créer une base de données 
-CREATE DATABASE pokedex WITH OWNER admin_pokedex;
-
-# Quitter psql
-exit
-```
-
-### Mise en place de l'environnement de développement
-
-Se mettre dans le dossier `api` et créer un fichier d'environnement à partir du fichier d'exemple.
-
-```bash
-# Créer un fichier d'environnement backend
-cp .env.example .env
-
-# Ajuster les valeurs du fichier .env
-code .env
-```
-
-### Lancement du serveur
-
-Se mettre dans le dossier `api` et créer un fichier d'environnement à partir du fichier d'exemple.
-
-```bash
-# Lancer la création des tables et le seeding
-npm run db:reset
-
-# Lancer le serveur en mode developpement
-npm run dev
-```
-
-## Infos et aides pour le projet
+## 🔍 Infos et aides pour le projet
 
 Document mis à disposition pour réaliser le projet :
 

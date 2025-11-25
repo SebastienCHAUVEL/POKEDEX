@@ -9,12 +9,6 @@ const options = {
       version: "1.0.0",
       description: "Pokemon teams manager API",
     },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-        description: "Development server ",
-      },
-    ],
   },
   apis: ["./src/routes/*.js"],
 };

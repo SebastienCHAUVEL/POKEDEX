@@ -1,19 +1,22 @@
+@baseUrl = https://pokedex-production-399e.up.railway.app
+@accesToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE3NjQxMTA0OTEsImV4cCI6MTc2NDEyNDg5MX0.wq-kot570zR0CHxKzIcqWVZma6DX_sseRZJNiuGuk4g
+
 ##########################
 #        Login           #
 ##########################
 
 ### S'inscrire
-POST http://localhost:3000/auth/register
+POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-  "username": "user45",
+  "username": "user42",
   "password": "je suis le roi du mondE1!#é",
   "validation": "je suis le roi du mondE1!#é"
 }
 
 ### Se connecter
-POST http://localhost:3000/auth/login
+POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
@@ -26,12 +29,13 @@ Content-Type: application/json
 ##########################
 
 ### Liste des teams (get /teams)
-GET http://localhost:3000/teams
+GET {{baseUrl}}/teams
 
 ### Ajouter une team (post /teams)
-POST http://localhost:3000/teams
+POST {{baseUrl}}/teams
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+Authorization: Bearer {{accesToken}}
+
 
 {
   "name": "comme tu veux",
@@ -39,63 +43,69 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpY
 }
 
 ### Modal d'une team (get /teams/:id)
-GET http://localhost:3000/teams/5
+GET {{baseUrl}}/teams/5
 
 ### Supprimer une team (delete /teams/:id)
-DELETE http://localhost:3000/teams/9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+DELETE {{baseUrl}}/teams/9
+Authorization: Bearer {{accesToken}}
+
 ### Modifier le nom d'une team (update /teams/:id)
-PATCH http://localhost:3000/teams/8
+PATCH {{baseUrl}}/teams/8
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+Authorization: Bearer {{accesToken}}
+
 
 {
   "name": "Team modifié"
 }
 
 ### Ajouter un pokemon à une team (post /teams/:teamId/pokemon/pokemon/:id)
-PUT http://localhost:3000/teams/7/pokemons/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+PUT {{baseUrl}}/teams/7/pokemons/4
+Authorization: Bearer {{accesToken}}
+
 
 ### Supprimer un pokemon à une team (post /teams/:teamId/pokemon/pokemon/:id)
-DELETE http://localhost:3000/teams/7/pokemons/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+DELETE {{baseUrl}}/teams/7/pokemons/4
+Authorization: Bearer {{accesToken}}
+
 
 ##########################
 #        Pokemons        #
 ##########################
 
 ### Lister les pokemons (get /pokemons)
-GET http://localhost:3000/pokemons
+GET {{baseUrl}}/pokemons
 
 ### Modal d'un pokemon (get /pokemons/:id ou pokemons/names/:name)
-GET http://localhost:3000/pokemons/1
+GET {{baseUrl}}/pokemons/1
 ###
-GET http://localhost:3000/pokemons/names/dra
+GET {{baseUrl}}/pokemons/names/dra
 
 ### Comparer deux pokemons (get /pokemons/:id/:idToCompare)
-GET http://localhost:3000/pokemons/compare/1/2
+GET {{baseUrl}}/pokemons/compare/1/2
 
 #########Votes############
 
 ### Voter pour une pokemon (put /pokemons/:id/votes)
-PUT http://localhost:3000/pokemons/1/votes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+PUT {{baseUrl}}/pokemons/1/votes
+Authorization: Bearer {{accesToken}}
+
 ### Unvoter pour une pokemon (put /pokemons/:id/votes)
-DELETE  http://localhost:3000/pokemons/3/votes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE3NjE4Mjg1ODcsImV4cCI6MTc2MTg0Mjk4N30.JHBkQx0l_6E-HLLQ2e3i7PGFH-q71C-6lyn8O2zPGIk
+DELETE  {{baseUrl}}/pokemons/3/votes
+Authorization: Bearer {{accesToken}}
+
 ### Afficher le nombre de votes pour un pokemons (get /pokemon/:id/votes)
-GET http://localhost:3000/pokemons/2/votes
+GET {{baseUrl}}/pokemons/2/votes
 
 ### Afficher le podium (get /pokemons/votes)
-GET http://localhost:3000/pokemons/votes
+GET {{baseUrl}}/pokemons/votes
 
 ##########################
 #        Types           #
 ##########################
 
 ### Lister les types (get /types)
-GET http://localhost:3000/types
+GET {{baseUrl}}/types
 
 ### Modal d'un type(get /types/:id)
-GET http://localhost:3000/types/2
+GET {{baseUrl}}/types/2

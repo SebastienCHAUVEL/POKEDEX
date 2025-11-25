@@ -1,0 +1,37 @@
+services:
+  pokedex-service:
+    build: ./api
+    ports:
+      - "8080:3000"
+    environment:
+      DATABASE_URL: "postgres://pokedex:pokedex@pokedex-db:5432/pokedex"
+    depends_on:
+      pokedex-db:
+        condition: service_healthy
+    volumes:
+      - ./api:/app
+      # Si on souhaite ne pas partager les node_modules entre l'hôte et le conteneur
+      # Par exemple si une dépendance native (dépendante de l'OS (linux / mac / windows )) est installée
+      # On ne veut pas la partager
+      - /app/node_modules
+    command: npm run dev
+
+  pokedex-db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: pokedex
+      POSTGRES_PASSWORD: pokedex
+      POSTGRES_DB: pokedex
+      PGDATA: /mydbdata
+    ports:
+      - "5439:5432"
+    volumes:
+      - pokedex-db-data:/mydbdata
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "pokedex", "-d", "pokedex"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+volumes:
+  pokedex-db-data:
