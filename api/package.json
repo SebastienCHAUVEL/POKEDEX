@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node --env-file=.env.production src/server.js",
+    "start": "NODE_ENV=development npm run db:reset && node --env-file=.env src/server.js",
     "dev": "NODE_ENV=development node --watch --env-file=.env src/server.js",
     "db:create": "node --env-file=.env src/data/sequelize/01.createTables.js",
     "db:seed": "node --env-file=.env src/data/sequelize/02.seedTables.js",

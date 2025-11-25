@@ -11,6 +11,14 @@ export async function getAll(req, res) {
     attributes: {
       exclude: ["createdAt", "updatedAt"],
     },
+    include: {
+      association: "types",
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+      // hide association relation(PokemonTypes)
+      through: { attributes: [] },
+    },
   });
 
   return res.success(pokemons);

@@ -163,6 +163,13 @@ export const pokemonRouter = Router();
  *                   atk_spe: 50
  *                   def_spe: 50
  *                   speed: 90
+ *                   types: [
+ *                    {
+ *                       "id": 1,
+ *                       "name": "Électrik",
+ *                       "color": "#FFEA70"
+ *                    }
+ *                   ]
  *                 - id: 2
  *                   name: "Bulbizarre"
  *                   hp: 45
@@ -170,9 +177,21 @@ export const pokemonRouter = Router();
  *                   def: 49
  *                   atk_spe: 65
  *                   def_spe: 65
- *                   speed: 45
+ *                   speed: 45"
+ *                   types: [
+ *                    {
+ *                       "id": 4,
+ *                       "name": "Plante",
+ *                       "color": "#49D0B0"
+ *                    },
+ *                    {
+ *                       "id": 8,
+ *                       "name": "Poison",
+ *                       "color": "#AA6BC8"
+ *                    }
+ *                   ]
  *               meta:
- *                 total: 7
+ *                 total: 2
  */
 pokemonRouter.get("/", getAll);
 
@@ -225,7 +244,7 @@ pokemonRouter.get("/", getAll);
  *                   updatedAt: "2025-10-29T14:07:57.667Z"
  *                   votesCount: "1"
  *               meta:
- *                 total: 3
+ *                 total: 2
  */
 pokemonRouter.get("/votes", getPodium);
 
