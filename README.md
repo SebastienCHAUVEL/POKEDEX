@@ -6,6 +6,11 @@ API de gestion de pokémons.
 
 Une fois le serveur démarré, rendez-vous sur [la route menant à la documentation de l'API](http://localhost:3000/api/docs)
 
+## Conception
+
+- [MCD](./docs/MCD.drawio.png)
+- [MPD](./docs/MPD.drawio.png)
+
 ## Installation
 
 ```bash

@@ -35,8 +35,6 @@ Pour considérer que tu as réussi le projet, il faut implémenter les user stor
 
 Si tu réussis à faire un des bonus suivant, tu auras réussi le projet avec brio ! 🎉
 
-Au choix (ou les trois si tu es méga chaud) :
-
 - Ajouter des routes pour augmenter le nombre de features de l'API ; dans la continuité, mais avec des nœuds au cerveau.
 - Ajouter les autorisations ; plus challengeant, mais plus intéressant.
 - Ajouter Swagger ; pour la documentation de l'API.
@@ -72,7 +70,6 @@ Droits d'un membre :
 Non droits d'un visiteur :
 
 - Accéder à l'administration d'une/des équipes : il faut à présent se connecter.
-- Assurer l'accessibilité de l'application, y compris sur mobile.
 - Assurer la sécurité de l'application face aux entrées utilisateurs.
 
 ### Swagger
@@ -81,8 +78,4 @@ Swagger est un outil de documentation d'API. Il permet de générer une document
 
 On pourra donc mettre à disposition des développeurs qui souhaitent utiliser notre API une documentation sur l'endpoint `/api/docs` par exemple.
 
-Pas d'énoncé guidé ici, tu pars en exploratoire total pour l'installer et le configurer. Pas d'inquiétude si tu n'y arrives pas, tu pourras voir dans la correction comment ça a été mis en place. 😉
-
 Direction la doc : [Documentation Swagger](https://swagger.io/docs/).
-
-Bonne chance ! 🍀
