@@ -20,6 +20,7 @@ Pour avoir une description des routes de l'API, rendez-vous sur [la documentatio
 - Mise en place de token JWT avec **jsonwebtoken** pour la connexion à l'api
 - Utilisation de l'ORM **sequelize** pour communiquer avec la base donnée
 - Mise en place d'une documentation de l'API avec **swagger**
+- Déploiement de l'application avec **Railway**
 
 ## 🚀 Installation locale avec Docker
 
